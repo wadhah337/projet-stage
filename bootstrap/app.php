@@ -5,7 +5,6 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
 use App\Http\Middleware\EnsureSetupIsComplete;
-
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
@@ -14,7 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
-            'setup.complete' => EnsureSetupIsComplete::class,
+            'setup.complete' => \App\Http\Middleware\EnsureSetupIsComplete::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
